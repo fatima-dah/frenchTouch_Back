@@ -12,6 +12,8 @@ const reserveRouter = require('./reserve.routes.js');
 const service_presentationRouter = require('./service_presentation.routes.js');
 const serviceRouter = require('./service.routes.js');
 const sub_categoryRouter = require('./sub_category.routes.js');
+const giftRouter = require('./gift.routes.js');
+
 
 
 router.use('/admins', adminRouter);
@@ -27,5 +29,7 @@ router.use('/reserves', reserveRouter);
 router.use('/services_presentation', service_presentationRouter);
 router.use('/services', serviceRouter);
 router.use('/sub_categorys', sub_categoryRouter);
+router.use('/gifts', giftRouter);
+
 
 module.exports = router;
