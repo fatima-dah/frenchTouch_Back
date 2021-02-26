@@ -32,7 +32,7 @@ router.put('/:id', (req, res) => {
       sql = "SELECT * FROM book WHERE id=?";
       connection.query(sql, req.params.id, (err, result) => {
         if (result.length === 0) {
-          res.status(404).send({errorMessage: `book with id ${req.params.id} not found`});
+          res.status(404).send({errorMessage: `Book with id ${req.params.id} not found`});
         } else {
           res.status(200).json(result[0]);
         }
