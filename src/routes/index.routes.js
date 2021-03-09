@@ -13,6 +13,8 @@ const service_presentationRouter = require('./service_presentation.routes.js');
 const serviceRouter = require('./service.routes.js');
 const sub_categoryRouter = require('./sub_category.routes.js');
 const giftRouter = require('./gift.routes.js');
+const imageCarouselGiftRouter = require('./imageCarouselGift.routes.js');
+
 
 
 
@@ -30,6 +32,8 @@ router.use('/services_presentation', service_presentationRouter);
 router.use('/services', serviceRouter);
 router.use('/sub_categorys', sub_categoryRouter);
 router.use('/gifts', giftRouter);
+router.use('/imagesCarouselGifts', imageCarouselGiftRouter);
+
 
 
 module.exports = router;
