@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const adminRouter = require("./admin.routes.js");
+// const adminRouter = require("./admin_login.routes.js");
+const loginRouter = require("./login.routes.js");
 const userRouter = require("./user.routes.js");
 const bookRouter = require("./book.routes.js");
 const buyRouter = require("./buy.routes.js");
@@ -13,10 +14,13 @@ const service_presentationRouter = require("./service_presentation.routes.js");
 const serviceRouter = require("./service.routes.js");
 const sub_categoryRouter = require("./sub_category.routes.js");
 const giftRouter = require("./gift.routes.js");
-const imageCarouselGiftRouter = require("./imageCarouselGift.routes.js");
 const reserve_visitorRouter = require("./reserve_visitor.routes.js");
+const uploadRouter = require("./upload.routes.js");
 
-router.use("/admins", adminRouter);
+
+
+// router.use("/admin_login", adminRouter);
+router.use('/login', loginRouter);
 router.use("/users", userRouter);
 router.use("/books", bookRouter);
 router.use("/buys", buyRouter);
@@ -30,7 +34,8 @@ router.use("/services_presentation", service_presentationRouter);
 router.use("/services", serviceRouter);
 router.use("/sub_categorys", sub_categoryRouter);
 router.use("/gifts", giftRouter);
-router.use("/imagesCarouselGifts", imageCarouselGiftRouter);
 router.use("/reserve_visitor", reserve_visitorRouter);
+router.use("/upload", uploadRouter);
+
 
 module.exports = router;

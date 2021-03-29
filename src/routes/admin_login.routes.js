@@ -2,7 +2,7 @@ const {connection} = require('../db_connection');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  const sql = "SELECT * FROM admin";
+  const sql = "SELECT * FROM admin_login";
   connection.query(sql, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const sql = "INSERT INTO admin SET ?";
+  const sql = "INSERT INTO admin_login SET ?";
   connection.query(sql, req.body, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
@@ -24,15 +24,15 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  let sql = "UPDATE admin SET ? WHERE id=?";
+  let sql = "UPDATE admin_login SET ? WHERE id=?";
   connection.query(sql, [req.body, req.params.id], (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
     } else {
-      sql = "SELECT * FROM admin WHERE id=?";
+      sql = "SELECT * FROM admin_login WHERE id=?";
       connection.query(sql, req.params.id, (err, result) => {
         if (result.length === 0) {
-          res.status(404).send({errorMessage: `Admin with id ${req.params.id} not found`});
+          res.status(404).send({errorMessage: `admin_login with id ${req.params.id} not found`});
         } else {
           res.status(200).json(result[0]);
         }
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  const sql = "DELETE FROM admin WHERE id=?";
+  const sql = "DELETE FROM admin_login WHERE id=?";
   connection.query(sql, req.params.id, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});

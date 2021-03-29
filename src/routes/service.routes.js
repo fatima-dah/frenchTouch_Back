@@ -1,8 +1,8 @@
 const {connection} = require('../db_connection');
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-  const sql = "SELECT * FROM service";
+router.get('/with_category', (req, res) => {
+  const sql = "SELECT *  FROM service INNER JOIN (SELECT sub_category.id AS id,sub_category.name AS sub_name, category.name AS cat_name FROM sub_category INNER JOIN category ON sub_category.category_id = category.id) AS res ON service.sub_category_id = res.id";
   connection.query(sql, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
@@ -13,8 +13,19 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/', (req, res) => {
+  const sql = "SELECT * FROM service ";
+  connection.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).send({errorMessage: err.message});
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 router.post('/', (req, res) => {
-  const sql = "INSERT INTO service SET ?";
+  const sql = "INSERT INTO service SET ? ";
   connection.query(sql, req.body, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});

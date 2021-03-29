@@ -12,6 +12,8 @@ router.get('/', (req, res) => {
   });
 });
 
+
+
 router.post('/', (req, res) => {
   const sql = "INSERT INTO palette SET ?";
   connection.query(sql, req.body, (err, results) => {
