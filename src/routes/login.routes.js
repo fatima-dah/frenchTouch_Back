@@ -112,6 +112,21 @@ router.get("/admin", authenticateWithJsonWebToken, (req, res) => {
     }
   });
 });
+router.get("/services", authenticateWithJsonWebToken, (req, res) => {
+  connection.query("SELECT * FROM service", (error, result) => {
+    if (error) {
+      res
+        .status(500)
+        .json({ errorMessage: "Sorry cannot get the about unvalidated" });
+    } else {
+      res.status(200).json(
+        result.map((user) => {
+          return { ...user, password: "hidden" };
+        })
+      );
+    }
+  });
+});
 
 
 

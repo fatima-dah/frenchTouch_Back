@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const adminRouter = require("./admin_login.routes.js");
+const adminRouter = require("./admin_login.routes.js");
 const loginRouter = require("./login.routes.js");
 const userRouter = require("./user.routes.js");
 const bookRouter = require("./book.routes.js");
@@ -19,7 +19,7 @@ const uploadRouter = require("./upload.routes.js");
 
 
 
-// router.use("/admin_login", adminRouter);
+router.use("/admin_login", adminRouter);
 router.use('/login', loginRouter);
 router.use("/users", userRouter);
 router.use("/books", bookRouter);
