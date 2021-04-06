@@ -16,6 +16,10 @@ const sub_categoryRouter = require("./sub_category.routes.js");
 const giftRouter = require("./gift.routes.js");
 const reserve_visitorRouter = require("./reserve_visitor.routes.js");
 const uploadRouter = require("./upload.routes.js");
+const aboutRouter = require("./about.routes.js");
+const aboutCartRouter = require("./aboutCart.routes.js");
+
+
 
 
 
@@ -36,6 +40,10 @@ router.use("/sub_categorys", sub_categoryRouter);
 router.use("/gifts", giftRouter);
 router.use("/reserve_visitor", reserve_visitorRouter);
 router.use("/upload", uploadRouter);
+router.use("/abouts", aboutRouter);
+router.use("/aboutCarts", aboutRouter);
+
+
 
 
 module.exports = router;

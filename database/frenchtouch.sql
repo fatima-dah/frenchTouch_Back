@@ -45,10 +45,7 @@ CREATE TABLE `product` (
 `name` VARCHAR(45) NOT NULL,
 `description` TEXT NOT NULL,
 `price` INT NOT NULL,
-`sub_category_id` INT NOT NULL,
-`sub_category_category_id` INT NOT NULL,
-FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category`(`id`),
-FOREIGN KEY (`sub_category_category_id`) REFERENCES `sub_category`(`category_id`)
+`image` VARCHAR(255) NOT NULL 
 );
 
 
@@ -70,7 +67,6 @@ CREATE TABLE `gift` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `titleGift` VARCHAR(155) NOT NULL,
 `imageGift` VARCHAR(255) NOT NULL,
-`imageCarousel_id` INT,
 `image` TEXT NOT NULL,
 `message` TEXT NOT NULL,
 `title` VARCHAR(155) NOT NULL,
@@ -78,9 +74,9 @@ CREATE TABLE `gift` (
 `firstname` VARCHAR(155) NOT NULL,
 `lastname` VARCHAR(155) NOT NULL,
 `email` VARCHAR(200) NOT NULL,
- `titlePrestationGift` VARCHAR(155),
-FOREIGN KEY (`imageCarousel_id`) REFERENCES `imageCarouselGift`(`id`)
+ `titlePrestationGift` VARCHAR(155)
 );
+
 
 CREATE TABLE `home` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -110,10 +106,10 @@ CREATE TABLE `service` (
 `price` VARCHAR(45) NOT NULL,
 `duration` VARCHAR(10)NOT NULL,
 `image` VARCHAR(255) NOT NULL,
-`category` VARCHAR(155) NOT NULL,
 `sub_category_id` INT NOT NULL,
 FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category`(`id`)
 );
+
 
 CREATE TABLE `reserve` (
 `user_id` INT NOT NULL,
@@ -124,6 +120,8 @@ FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
 FOREIGN KEY (`service_id`) REFERENCES `service`(`id`)
 );
 
+
+
 CREATE TABLE `service_presentation` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `title` VARCHAR(150) NOT NULL,
@@ -131,25 +129,24 @@ CREATE TABLE `service_presentation` (
 `description` TEXT NOT NULL
 );
 
+
+
 CREATE TABLE `about` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`title` VARCHAR(150) NOT NULL,
-`description` TEXT NOT NULL,
-`text1` TEXT NOT NULL,
-`text2` TEXT NOT NULL,
-`text3` TEXT NOT NULL,
-`image_text1` VARCHAR(255) NOT NULL,
-`image_text2` VARCHAR(255) NOT NULL,
-`image_text3` VARCHAR(255) NOT NULL
+`lastname` VARCHAR(150) NOT NULL,
+`firstname` VARCHAR(150) NOT NULL,
+`object` VARCHAR(200) NOT NULL,
+`email` VARCHAR(255) NOT NULL,
+`message` TEXT NOT NULL
+
 );
-
-
- CREATE TABLE `imageCarouselGift` (
+CREATE TABLE `aboutCart` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`image` TEXT NOT NULL
+`city` TEXT NOT NULL,
+`address` VARCHAR(255) NOT NULL,
+`PostalCode` VARCHAR(255) NOT NULL,
+`imageCart` VARCHAR(255) NOT NULL
 );
-
-
 
 
 CREATE TABLE `reserve_visitor` (
@@ -162,3 +159,4 @@ CREATE TABLE `reserve_visitor` (
 `service_id` INT,
  FOREIGN KEY (`service_id`) REFERENCES `service`(`id`)
 );
+

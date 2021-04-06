@@ -3,6 +3,7 @@ const router = require("express").Router();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 const { CLIENT_URL, JWT_SECRET } = process.env;
 
@@ -65,8 +66,12 @@ router.post("/", (req, res) => {
           };
           const token = jwt.sign({ id: user.id }, JWT_SECRET, {
             expiresIn: "1h",
-          });
+            
+
+          });          
+
           res.status(200).json({ user, token });
+
         } else {
           res.status(403).json({ errorMessage: "Mot de passe invalide" });
         }
