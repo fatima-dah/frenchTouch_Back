@@ -87,8 +87,12 @@ CREATE TABLE `home` (
 
 CREATE TABLE `notice` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`description` TEXT NOT NULL,
-`user_id` INT NOT NULL,
+`name` VARCHAR(100) NOT NULL,
+`adress` VARCHAR(255) NOT NULL,
+`postCode` INT NOT NULL,
+`message` TEXT NOT NULL,
+`user_id` INT NULL,
+`display` TINYINT(1) DEFAULT 0;
 FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
 
@@ -135,11 +139,10 @@ CREATE TABLE `about` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `lastname` VARCHAR(150) NOT NULL,
 `firstname` VARCHAR(150) NOT NULL,
-`object` VARCHAR(200) NOT NULL,
 `email` VARCHAR(255) NOT NULL,
 `message` TEXT NOT NULL
-
 );
+
 CREATE TABLE `aboutCart` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `city` TEXT NOT NULL,

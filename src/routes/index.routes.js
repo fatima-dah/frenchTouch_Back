@@ -2,7 +2,6 @@ const router = require("express").Router();
 const adminRouter = require("./admin_login.routes.js");
 const loginRouter = require("./login.routes.js");
 const userRouter = require("./user.routes.js");
-const bookRouter = require("./book.routes.js");
 const buyRouter = require("./buy.routes.js");
 const categoryRouter = require("./category.routes.js");
 const homeRouter = require("./home.routes.js");
@@ -26,7 +25,6 @@ const aboutCartRouter = require("./aboutCart.routes.js");
 router.use("/admin_login", adminRouter);
 router.use('/login', loginRouter);
 router.use("/users", userRouter);
-router.use("/books", bookRouter);
 router.use("/buys", buyRouter);
 router.use("/categorys", categoryRouter);
 router.use("/homes", homeRouter);
@@ -41,7 +39,7 @@ router.use("/gifts", giftRouter);
 router.use("/reserve_visitor", reserve_visitorRouter);
 router.use("/upload", uploadRouter);
 router.use("/abouts", aboutRouter);
-router.use("/aboutCarts", aboutRouter);
+router.use("/aboutCarts", aboutCartRouter);
 
 
 

@@ -1,5 +1,7 @@
-const {connection} = require('../db_connection');
-const router = require('express').Router();
+const { connection } = require("../db_connection");
+const router = require("express").Router();
+
+
 
 router.get('/', (req, res) => {
   const sql = "SELECT * FROM user";
