@@ -63,6 +63,9 @@ FOREIGN KEY (`product_id`) REFERENCES `product`(`id`),
 CREATE INDEX `order_number` ON `buy` (`order_number`);
 
 
+
+
+
 CREATE TABLE `gift` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 `titleGift` VARCHAR(155) NOT NULL,
@@ -95,6 +98,8 @@ CREATE TABLE `notice` (
 `display` TINYINT(1) DEFAULT 0;
 FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 );
+
+
 
 CREATE TABLE `palette` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,

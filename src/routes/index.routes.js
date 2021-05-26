@@ -17,6 +17,7 @@ const reserve_visitorRouter = require("./reserve_visitor.routes.js");
 const uploadRouter = require("./upload.routes.js");
 const aboutRouter = require("./about.routes.js");
 const aboutCartRouter = require("./aboutCart.routes.js");
+const loginUserRouter = require("./loginUser.routes")
 
 
 
@@ -40,6 +41,7 @@ router.use("/reserve_visitor", reserve_visitorRouter);
 router.use("/upload", uploadRouter);
 router.use("/abouts", aboutRouter);
 router.use("/aboutCarts", aboutCartRouter);
+router.use("/loginUsers", loginUserRouter);
 
 
 

@@ -13,25 +13,34 @@ router.use(
   })
 );
 
+
+
+
 router.post("/register", (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { firstname, lastname, email, password, confirmedPassword } = req.body;
+  if (!firstname || !lastname || !email || !password || !confirmedPassword) {
     res.status(400).json({
       errorMessage: "Merci de renseigner votre mail ET votre mot de passe",
     });
   } else {
     const hash = bcrypt.hashSync(password, 10);
+    const hashs = bcrypt.hashSync( confirmedPassword, 10);
+
+
     connection.query(
-      "INSERT INTO admin_login(email, password) VALUES (?, ?)",
-      [email, hash],
+      "INSERT INTO user(firstname, lastname, email, password, confirmedPassword) VALUES (?, ?, ?, ?, ?)",
+      [firstname, lastname, email, hash, hashs],
       (error, result) => {
         if (error) {
           res.status(500).json({ errorMessage: error.message });
         } else {
           res.status(201).json({
             id: result.insertId,
+            firstname,
+            lastname,
             email,
             password: "hidden",
+            confirmedPassword: "hidden",
           });
         }
       }
@@ -40,7 +49,7 @@ router.post("/register", (req, res) => {
 });
 
 
-router.post("/", (req, res) => {
+router.post("/singIn", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     res.status(400).json({
@@ -48,7 +57,7 @@ router.post("/", (req, res) => {
     });
   } else {
     connection.query(
-      `SELECT * FROM admin_login WHERE email=?`,
+      `SELECT email, password FROM user WHERE email=? `,
       [email],
       (error, result) => {
         if (error) {
@@ -56,16 +65,17 @@ router.post("/", (req, res) => {
         } else if (result.length === 0) {
           res.status(403).json({ errorMessage: "Adresse mail invalide" });
         } else if (bcrypt.compareSync(password, result[0].password)) {
-          const user = {
+          const users = {
             id: result[0].id,
             email,
             password: "hidden",
           };
-          const token = jwt.sign({ id: user.id }, JWT_SECRET, {
-            expiresIn: "1h",
+          const user =  jwt.sign({ id: users.id }, JWT_SECRET, {
+            expiresIn: "1h", 
           });
+          user = "SELECT * FROM user"
 
-          res.status(200).json({ user, token });
+          res.status(200).json({ users, user });
         } else {
           res.status(403).json({ errorMessage: "Mot de passe invalide" });
         }
@@ -73,6 +83,8 @@ router.post("/", (req, res) => {
     );
   }
 });
+
+
 
 
 module.exports = router;
