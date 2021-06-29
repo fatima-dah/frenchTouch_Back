@@ -63,21 +63,22 @@ FOREIGN KEY (`product_id`) REFERENCES `product`(`id`),
 CREATE INDEX `order_number` ON `buy` (`order_number`);
 
 
-
+CREATE TABLE `giftPresentation` (
+ `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ `imagePresentation` VARCHAR(255) NOT NULL
+);
 
 
 CREATE TABLE `gift` (
 `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`titleGift` VARCHAR(155) NOT NULL,
-`imageGift` VARCHAR(255) NOT NULL,
-`image` TEXT NOT NULL,
+`lastnameFirstname` VARCHAR(255) NOT NULL,
+`email` VARCHAR(255) NOT NULL,
+`phone` INT NOT NULL,
 `message` TEXT NOT NULL,
-`title` VARCHAR(155) NOT NULL,
+`event` VARCHAR(255) NOT NULL,
 `price` DECIMAL NOT NULL,
-`firstname` VARCHAR(155) NOT NULL,
-`lastname` VARCHAR(155) NOT NULL,
-`email` VARCHAR(200) NOT NULL,
- `titlePrestationGift` VARCHAR(155)
+`lastnameFirstnameGift` VARCHAR(155) NOT NULL,
+`emailGift` VARCHAR(200) NOT NULL,
 );
 
 
@@ -167,4 +168,18 @@ CREATE TABLE `reserve_visitor` (
 `service_id` INT,
  FOREIGN KEY (`service_id`) REFERENCES `service`(`id`)
 );
+
+CREATE TABLE `panier` (
+`id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+`idProduct` INT NOT NULL,
+`numberCommande` VARCHAR(155) NOT NULL,
+`lastname` VARCHAR(150) NOT NULL,
+`firstname`  VARCHAR(155) NULL,
+`email` VARCHAR(255) NOT NULL,
+`phone` VARCHAR(255) NOT NULL,
+`quantity` VARCHAR(255) NOT NULL,
+`price` INT NOT NULL,
+FOREIGN KEY (`idProduct`) REFERENCES `product`(`id`)   
+);
+
 

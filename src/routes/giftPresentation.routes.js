@@ -2,7 +2,7 @@ const {connection} = require('../db_connection');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  const sql = "SELECT * FROM notice WHERE display = 1 ORDER BY id DESC";
+  const sql = "SELECT * FROM giftPresentation";
   connection.query(sql, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
@@ -11,21 +11,9 @@ router.get('/', (req, res) => {
     }
   });
 });
- 
-router.get('/new-notices', (req, res) => {
-  const sql = "SELECT * FROM notice WHERE display = 0";
-  connection.query(sql, (err, results) => {
-    if (err) {
-      res.status(500).send({errorMessage: err.message});
-    } else {
-      res.status(200).json(results);
-    }
-  });
-});
-
 
 router.post('/', (req, res) => {
-  const sql = "INSERT INTO notice SET ?";
+  const sql = "INSERT INTO giftPresentation SET ?";
   connection.query(sql, req.body, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
@@ -36,15 +24,15 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  let sql = "UPDATE notice SET ? WHERE id=?";
+  let sql = "UPDATE giftPresentation SET ? WHERE id=?";
   connection.query(sql, [req.body, req.params.id], (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
     } else {
-      sql = "SELECT * FROM notice WHERE id=?";
+      sql = "SELECT * FROM giftPresentation WHERE id=?";
       connection.query(sql, req.params.id, (err, result) => {
         if (result.length === 0) {
-          res.status(404).send({errorMessage: `Notice with id ${req.params.id} not found`});
+          res.status(404).send({errorMessage: `Gift with id ${req.params.id} not found`});
         } else {
           res.status(200).json(result[0]);
         }
@@ -54,7 +42,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  const sql = "DELETE FROM notice WHERE id=?";
+  const sql = "DELETE FROM giftPresentation WHERE id=?";
   connection.query(sql, req.params.id, (err, results) => {
     if (err) {
       res.status(500).send({errorMessage: err.message});
