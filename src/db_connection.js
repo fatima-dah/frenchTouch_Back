@@ -1,6 +1,7 @@
 require('dotenv').config();
 const mysql = require('mysql');
 
+
 let config = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -20,7 +21,6 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 const connection = mysql.createPool(config);
-
 const query = (...args) => {
   return new Promise((resolve, reject) => {
     connection.query(...args, (err, res) => {
